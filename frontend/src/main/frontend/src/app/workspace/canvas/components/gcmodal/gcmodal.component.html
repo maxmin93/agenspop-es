@@ -1,0 +1,66 @@
+<!-- ///////////////////////////////////// -->
+<!-- //   Graph-Contraction Config Modal   -->
+<!-- ///////////////////////////////////// -->
+<!-- 참고 https://codepen.io/makshh/pen/QEWmeR -->
+
+<!-- <ng-template #gcModal let-modal> -->
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Graph Contraction</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss(null)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="container" style="margin-left: 1em;">
+
+      <div class="row">
+        <span>method: </span>
+        <input name="collapseGroup" type="radio" value="centrality"  (change)="onChangeMethod($event.target.value)" checked/> centrality
+        <input name="collapseGroup" type="radio" value="label-value" (change)="onChangeMethod($event.target.value)" /> label-value
+      </div>
+      <hr />
+
+      <div *ngIf="methodSelected" class="row">
+        <div id="collapse1" [ngbCollapse]="methodSelected !== 'centrality'">
+          <div class="form-group">
+            <label for="dropdownFunctions" class="col-form-label">Functions</label>
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-outline-primary" id="dropdownFunctions" ngbDropdownToggle>{{centralitySelected}}</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownFunctions">
+                <button ngbDropdownItem *ngFor="let item of centralities" (click)="onChangeFunction(item)">{{item}}</button>
+              </div>
+            </div>
+          </div>         
+        </div>
+        <div id="collapse2" [ngbCollapse]="methodSelected !== 'label-value'">
+          <div class="form-group">
+            <label for="dropdownLabels" class="col-form-label">Labels</label>
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-outline-primary" id="dropdownLabels" ngbDropdownToggle>{{labelSelected.name}}</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownLabels">
+                <button ngbDropdownItem *ngFor="let item of labels" (click)="onChangeLabel(item)">{{item.name}} ({{item.size}})</button>
+              </div>
+            </div>   
+          </div>
+          <div class="form-group">
+            <label for="dropdownKeys" class="col-form-label">Values</label>
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-outline-primary" id="dropdownKeys" ngbDropdownToggle>{{keySelected}}</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownKeys">
+                <button ngbDropdownItem (click)="onChangeKey('_all_')">_all_</button>
+                <button ngbDropdownItem *ngFor="let item of keys" (click)="onChangeKey(item)">{{item}}</button>
+              </div>
+            </div>   
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="close(true)">Activate</button>
+    <button type="button" class="btn btn-light" (click)="close(false)">Dectivate</button>
+  </div>
+<!-- </ng-template> -->

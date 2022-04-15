@@ -1,0 +1,94 @@
+<div class="ws_container container mw-100 p-0">
+  <!-- <app-header
+    (undoEmitter)="undo()"
+    (redoEmitter)="redo()"
+    (addNodeEmitter)="appendVertex()"
+    (selectAllNodesEmitter)="selectAllNodes()"
+    (selectLeafNodesEmitter)="selectLeafNodes()"
+    (filterPanelOpen)="filterPanelOpen()"
+    (designPanelOpen)="designPanelOpen()">
+  </app-header> -->
+  <app-header
+    [screenMode]="screenMode" [graph]="gSearch"
+    [changeUndo]="undoable" [changeRedo]="redoable" [changeGcMode]="gcMode"
+    (selectQueryEmitter)="selectQuery($event)"
+    (selectSearchEmitter)="selectSearch($event)"
+    (gcEmitter)="gcEvent($event)"
+    (undoRedoEmitter)="undoRedoEvent($event)"
+    (changeScreenModeEmitter)="changeScreenMode($event)"
+  ></app-header>
+
+  <!-- property of selected element -->
+  <app-property #propertyComponent
+    [screenMode]="screenMode"
+    (changeStyleEmitter)="actionEvent($event)"
+  ></app-property>
+
+  <!--
+  <app-filter #filterComponent></app-filter>
+	<app-design #designComponent (captionChanger)="captionChangeByStyleComponent($event)"></app-design>
+  <app-expand #expandComponent (expandEmitter)="expand($event)" (deleteEmitter)="deleteNode()"></app-expand>
+  -->
+  <main>
+    <app-webgl #webglScreen *ngIf="screenMode==='webgl'" [graph]="gEl"
+      (cropToCyEmitter)="cropToCyGraph($event)"
+      (actionEmitter)="actionEvent($event)"
+      (readyEmitter)="readyEvent($event)"
+    ></app-webgl>
+    <app-canvas #canvasScreen *ngIf="screenMode==='canvas'" [graph]="gCy"
+      (returnToElEmitter)="returnToElGraph($event)"
+      (actionEmitter)="actionEvent($event)"
+      (readyEmitter)="readyEvent($event)"
+    ></app-canvas>
+  </main>
+
+  <!-- <footer #ws_footer class="ws_footer"> -->
+    <!-- labels dropUp Toggle -->
+    <footer #ws_footer class="ws_labels">
+      <div ngbDropdown placement="top-right" class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>nodes</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button *ngFor="let x of dispLabels.nodes; let i = index" ngbDropdownItem
+            [style.backgroundColor]='x["color"]' [style.color]='"#fff"'
+            (click)="selectLabel('v',x)">{{x.name}} ({{x.size}}/{{x.total}})</button>
+        </div>
+      </div>
+      <div ngbDropdown placement="top-right" class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>edges</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+          <button *ngFor="let x of dispLabels.edges; let i = index" ngbDropdownItem
+            [style.backgroundColor]='x["color"]' [style.color]='"#fff"'
+            (click)="selectLabel('e',x)">{{x.name}} ({{x.size}}/{{x.total}})</button>
+        </div>
+      </div>
+      <div ngbDropdown placement="top-right" class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic3" ngbDropdownToggle>layout</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic3">
+          <button *ngFor="let x of dispLayouts" ngbDropdownItem (click)="changeLayout(x)">{{x}}</button>
+        </div>
+      </div>
+      <div placement="top-right" class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic4" (click)="btnDummy()">
+          <i class="fas fa-home"></i>
+        </button>
+      </div>
+      <!--
+      <button class="btn btn-outline-primary" style='background-color:transparent;'>
+        <div style="width:20px; height:20px; background-image:url(assets/icons/angry-regular.png)"></div>
+      </button>
+      <div style="width: 32px; height: 32px; background-color:transparent; background-image:url(assets/icons/angry-regular.png)"></div>
+      -->
+    </footer>
+  <!-- </footer> -->
+
+  <ngx-spinner bdColor="rgba(51,51,51,0.7)"
+      size="large" color="#fff" type="ball-atom" [fullScreen]="false">
+    <p style="color: white" > {{ spinnerMsg }} </p>
+  </ngx-spinner>
+
+</div>
+
+
+
+
+

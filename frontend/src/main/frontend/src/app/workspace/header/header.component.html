@@ -1,0 +1,203 @@
+<header #ws_header class="ws_header">
+	<!-- 메뉴 -->
+	<div class="ws_menu">
+			<span class="dropdown dropdown_wrap">
+				<button
+					type="button"
+					class="menu_btn btn dropdown-toggle with_tooltip"
+					data-toggle="dropdown" data-placement="bottom" title="Menu"
+					id="dropdownMenu"
+					aria-haspopup="true"
+					aria-expanded="false">
+					<i class="fas fa-bars" aria-hidden="true"></i>
+					<span class="sr-only">Menu</span>
+				</button>
+				<div class="dropdown-menu p-0" aria-labelledby="dropdownMenu">
+					<button type="button" class="btn dropdown-item">Go to dashboard</button>
+					<div class="dropdown-divider"></div>
+					<button type="button" class="btn dropdown-item">Save</button>
+					<button type="button" class="btn dropdown-item" disabled>Publish</button>
+					<button type="button" class="btn dropdown-item">Export</button>
+					<div class="dropdown-divider"></div>
+					<button type="button" class="btn dropdown-item">Preferences</button>
+					<button type="button" class="btn dropdown-item">Help</button>
+				</div>
+			</span>
+		<button type="button" class="btn px-1 ml-2 with_tooltip" data-placement="bottom" [ngClass]="{ disabled:!undoable }" (click)="undoClick()"><i class="fas fa-undo-alt" aria-hidden="true"></i><span class="sr-only">Undo</span></button>
+		<button type="button" class="btn px-1 mr-2 with_tooltip" data-placement="bottom" [ngClass]="{ disabled:!redoable }" (click)="redoClick()"><i class="fas fa-redo-alt" aria-hidden="true"></i><span class="sr-only">Redo</span></button>
+		<button type="button" class="btn with_tooltip" data-placement="bottom" (click)="openDatasources(datasourcesModal)">
+			<i class="fas fa-magic" aria-hidden="true"></i><span class="sr-only">Datasources</span>
+		</button>
+		<span class="dropdown dropdown_wrap">
+      <button type="button" class="btn dropdown-toggle" id="dropdownMenuMore" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</button>
+      <div class="dropdown-menu p-0" aria-labelledby="dropdownMenuMore">
+        <!-- <div class="dropright">
+          <button type="button" class="btn dropdown-item dropdown-toggle" id="dropdownMenuSelect" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
+          <div class="dropdown-menu p-0" aria-labelledby="dropdownMenuSelect">
+            <button (click)="selectAllNodes()" type="button" class="btn dropdown-item">All nodes</button>
+            <button (click)="selectLeafNodes()" type="button" class="btn dropdown-item">Leaf nodes</button>
+            <button type="button" class="btn dropdown-item">Lasso</button>
+          </div>
+        </div> -->
+        <button type="button" class="btn dropdown-item" (click)="openQueries('gremlin',queriesModal)">Query by <strong>gremlin</strong></button>
+        <button type="button" class="btn dropdown-item" (click)="openQueries('cypher',queriesModal)">Query by <strong>cypher</strong></button>
+        <div class="dropdown-divider"></div>
+        <button type="button" class="btn dropdown-item" (click)="openGCConfig()">Graph Contraction &nbsp;<i *ngIf="gcMode" class="fas fa-check"></i></button>
+        <div class="dropdown-divider"></div>
+        <button type="button" class="btn dropdown-item" (click)="onChangeScreenMode()">Change screen to <strong>{{nextScreenMode}}</strong></button>
+      </div>
+    </span>
+    <!-- Drill-down & Roll-up -->
+		<button *ngIf="gcMode" type="button" class="btn px-1 ml-2 with_tooltip" data-placement="bottom" (click)="gcConstraction()">
+      <i class="fas fa-compress-arrows-alt icon-size" aria-hidden="true"></i><span class="sr-only">Constraction</span>
+    </button>
+		<button *ngIf="gcMode" type="button" class="btn px-1 mr-2 with_tooltip" data-placement="bottom" (click)="gcExpansion()">
+      <i class="fas fa-expand-arrows-alt icon-size" aria-hidden="true"></i><span class="sr-only">Expansion</span>
+    </button>
+	</div>
+	<!-- // 메뉴 -->
+	<!-- 검색창 -->
+	<div class="ws_search">
+		<form>
+			<fieldset>
+				<legend class="sr-only">Search</legend>
+				<div class="inner" tabindex="-1">
+					<input #searchInput type="text" class="input_text input_ws form-control" id="wsSearch" aria-describedby="search">
+					<!-- <input ngxTypeahead [value]="searchQuery"	[taList]="searchResults" (taSelected)="selectedSearch($event)"> -->
+					<i class="fas fa-search" aria-hidden="true"></i>
+					<button type="button" class="btn btn-link">Advanced</button>
+					<button type="button" class="btn btn_reset"><i class="far fa-times-circle" aria-hidden="true"></i><span class="sr-only">Remove</span></button>
+					<div class="action d-flex px-2">
+						<div class="item mr-auto">
+							<button type="button" class="btn btn-link px-1 active">NODES</button>
+							-
+							<button type="button" class="btn btn-link px-1">EDGES</button>
+						</div>
+						<div class="item mx-auto">
+							<button type="button" class="btn btn-link px-1 active">ALL</button>
+							-
+							<button type="button" class="btn btn-link px-1">LOCAL</button>
+						</div>
+						<div class="item ml-auto">
+							<button type="button" class="btn btn-link px-1 active">Advanced</button>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+		<div class="result bg-white">
+			<ul class="p-2">
+				<li *ngFor="let item of searchResults; let i=index" [attr.data-index]="i">
+					<button (click)="selectedSearch(item)" type="button" class="btn" aria-describedby="Instabank">
+						<strong class="tit">[{{item.ktype}}] {{item.key}}</strong>
+						<p class="data" *ngIf="item.vtype=='node-label' || item.vtype=='edge-label'">
+								{{item.vtype}}-name: <span class="match">{{item.name}}</span>
+						</p>
+						<p class="data" *ngIf="item.vtype=='node' || item.vtype=='edge'">
+								{{item.vtype}}-id: <span class="match">{{item.value.data.id}}</span>
+						</p>
+							<!-- <p class="data">
+							description: <span class="match">healthy beans</span> | categoryid : <span class="match">9</span>
+						</p> -->
+						<span class="type text-white px-2" style="background-color:#d4742c">{{item.vtype}}</span>
+					</button>
+				</li>
+<!--				<li>-->
+<!--					<button type="button" class="btn" aria-describedby="Instabank">-->
+<!--						<strong class="tit">Instabank</strong>-->
+<!--						<p class="data">-->
+<!--							name: <span class="match">Instabank</span> | homepage_url: http://<span class="match">instabank</span>.ru/-->
+<!--							| permalink: /organization/<span class="match">instabank</span>-->
+<!--						</p>-->
+<!--						<span class="type text-white px-2" style="background-color:rgb(95, 218, 163)">INVESTOR</span>-->
+<!--					</button>-->
+<!--				</li>-->
+			</ul>
+		</div>
+	</div>
+	<!-- // 검색창 -->
+	<!-- 필터 및 디자인 -->
+	<div class="ws_func">
+		<button (click)="showFilterPanel()" type="button" class="btn btn_panel with_tooltip" title="Open the filter panel"><i class="fas fa-filter" aria-hidden="true"></i><span class="sr-only">Open the filter panel</span></button>
+		<button (click)="showStylePanel()" type="button" class="btn btn_panel with_tooltip" ><i class="fas fa-spray-can" aria-hidden="true"></i><span class="sr-only">Open the design panel</span></button>
+	</div>
+	<!-- // 필터 및 디자인 -->
+</header>
+
+
+<!-- ///////////////////////////////////// -->
+<!-- //   Datasources Modal dialog -->
+<!-- ///////////////////////////////////// -->
+<ng-template #datasourcesModal let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Datasource List</h4>
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss(null)">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<!-- search box for datasources -->
+		<div class="form-group has-search">
+			<span class="fa fa-search form-control-feedback"></span>
+			<input #searchDs type="text" class="form-control" placeholder="Search" (keyup.enter)="searchDatasources(searchDs.value)" />
+		</div>
+
+		<table class="table table-striped">
+			<thead>	<tr>
+				<th scope="col">#</th>
+				<th scope="col">datasource</th>
+				<th scope="col">desc</th>
+			</tr> </thead>
+			<tbody>
+			<tr *ngFor="let ds of datasources; index as i">
+				<th scope="row">{{ i + 1 }}</th>
+				<td>
+					<!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px"> -->
+					<a href="javascript:void(0)" class="breadcrumb-item text-primary" (click)="modal.close(ds.name)">{{ ds.name }}</a>
+				</td>
+				<td>{{ ds.desc }}</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	<!--
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+	</div>
+	-->
+</ng-template>
+
+
+<!-- ///////////////////////////////////// -->
+<!-- //   Queries Modal dialog -->
+<!-- ///////////////////////////////////// -->
+<ng-template #queriesModal let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Query by {{query.type}}</h4>
+	</div>
+	<div class="modal-body">
+      <div class="form-group row">
+        <div class="col-sm-2">
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdownDatasource" ngbDropdownToggle>Datasource</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownDatasource">
+              <button ngbDropdownItem *ngFor="let ds of datasources" (click)="setQuery('datasource',ds.name)">{{ds.desc}}</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext font-weight-bold" id="queryDatasource" [value]="query.datasource">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <textarea #queryScript class="form-control vresize" rows="2">{{query.script}}</textarea>
+        </div>
+      </div>
+  </div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary" (click)="modal.close(queryScript.value)">Query</button>
+		<button type="button" class="btn btn-light" (click)="modal.dismiss(null)">Close</button>
+	</div>
+</ng-template>
+

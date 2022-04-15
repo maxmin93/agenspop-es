@@ -1,0 +1,44 @@
+.ta-results.list-group{
+  max-width: 400px;
+  overflow: auto;
+  max-height: 75vh;
+  border: 1px solid #ccc;
+}
+.typeahead-wrap .list-group-item {
+  width:100%;
+  text-align: left;
+  position: relative;
+  display: block;
+  padding: 5px 10px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+}
+
+.typeahead-wrap .list-group-item{
+  width:100%;
+  text-align: left;
+}
+.typeahead-wrap .list-group-item.active{
+  background-color: #ccc;
+}
+
+.typeahead-wrap .list-group-item .item-name {
+  font-weight: bold;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}

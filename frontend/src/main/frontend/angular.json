@@ -1,0 +1,183 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ap-workspace": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "css"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "../../../target/frontend",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/tippy.js/index.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/lodash/lodash.min.js",
+
+              "node_modules/cytoscape/dist/cytoscape.min.js",
+              "node_modules/cytoscape-undo-redo/cytoscape-undo-redo.js",
+              "node_modules/webcola/WebCola/cola.min.js",
+              "node_modules/cytoscape-cola/cytoscape-cola.js",
+              "node_modules/cytoscape-euler/cytoscape-euler.js",
+              "node_modules/dagre/dist/dagre.js",
+              "node_modules/cytoscape-dagre/cytoscape-dagre.js",
+              "node_modules/klayjs/klay.js",
+              "node_modules/cytoscape-klay/cytoscape-klay.js",
+              "node_modules/layout-base/layout-base.js",
+              "node_modules/cose-base/cose-base.js",
+              "node_modules/cytoscape-cose-bilkent/cytoscape-cose-bilkent.js",
+
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/cytoscape-popper/cytoscape-popper.js",
+              "node_modules/tippy.js/umd/index.all.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+
+              "src/assets/elgrapho/ElGrapho.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ap-workspace:build",
+            "host": "0.0.0.0",
+            "port": 38082
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ap-workspace:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ap-workspace:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/tippy.js/index.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/lodash/lodash.min.js",
+
+              "node_modules/cytoscape/dist/cytoscape.min.js",
+              "node_modules/cytoscape-undo-redo/cytoscape-undo-redo.js",
+              "node_modules/webcola/WebCola/cola.min.js",
+              "node_modules/cytoscape-cola/cytoscape-cola.js",
+              "node_modules/cytoscape-euler/cytoscape-euler.js",
+              "node_modules/dagre/dist/dagre.js",
+              "node_modules/cytoscape-dagre/cytoscape-dagre.js",
+              "node_modules/klayjs/klay.js",
+              "node_modules/cytoscape-klay/cytoscape-klay.js",
+              "node_modules/layout-base/layout-base.js",
+              "node_modules/cose-base/cose-base.js",
+              "node_modules/cytoscape-cose-bilkent/cytoscape-cose-bilkent.js",
+
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/cytoscape-popper/cytoscape-popper.js",
+              "node_modules/tippy.js/umd/index.all.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+
+              "src/assets/elgrapho/ElGrapho.js"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "ap-workspace:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ap-workspace:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "ap-workspace"
+}

@@ -1,0 +1,254 @@
+[
+  {
+    "name": "address-book-solid.png",
+    "path": "/assets/icons/address-book-solid.png"
+  },
+  {
+    "name": "angry-regular.png",
+    "path": "/assets/icons/angry-regular.png"
+  },
+  {
+    "name": "archive-solid.png",
+    "path": "/assets/icons/archive-solid.png"
+  },
+  {
+    "name": "at-solid.png",
+    "path": "/assets/icons/at-solid.png"
+  },
+  {
+    "name": "balance-scale-solid.png",
+    "path": "/assets/icons/balance-scale-solid.png"
+  },
+  {
+    "name": "bath-solid.png",
+    "path": "/assets/icons/bath-solid.png"
+  },
+  {
+    "name": "bed-solid.png",
+    "path": "/assets/icons/bed-solid.png"
+  },
+  {
+    "name": "bell-solid.png",
+    "path": "/assets/icons/bell-solid.png"
+  },
+  {
+    "name": "birthday-cake-solid.png",
+    "path": "/assets/icons/birthday-cake-solid.png"
+  },
+  {
+    "name": "bolt-solid.png",
+    "path": "/assets/icons/bolt-solid.png"
+  },
+  {
+    "name": "bomb-solid.png",
+    "path": "/assets/icons/bomb-solid.png"
+  },
+  {
+    "name": "book-solid.png",
+    "path": "/assets/icons/book-solid.png"
+  },
+  {
+    "name": "bug-solid.png",
+    "path": "/assets/icons/bug-solid.png"
+  },
+  {
+    "name": "building-solid.png",
+    "path": "/assets/icons/building-solid.png"
+  },
+  {
+    "name": "bullhorn-solid.png",
+    "path": "/assets/icons/bullhorn-solid.png"
+  },
+  {
+    "name": "bus-solid.png",
+    "path": "/assets/icons/bus-solid.png"
+  },
+  {
+    "name": "calculator-solid.png",
+    "path": "/assets/icons/calculator-solid.png"
+  },
+  {
+    "name": "calendar-alt-solid.png",
+    "path": "/assets/icons/calendar-alt-solid.png"
+  },
+  {
+    "name": "camera-solid.png",
+    "path": "/assets/icons/camera-solid.png"
+  },
+  {
+    "name": "car-solid.png",
+    "path": "/assets/icons/car-solid.png"
+  },
+  {
+    "name": "chart-area-solid.png",
+    "path": "/assets/icons/chart-area-solid.png"
+  },
+  {
+    "name": "clock-solid.png",
+    "path": "/assets/icons/clock-solid.png"
+  },
+  {
+    "name": "code-solid.png",
+    "path": "/assets/icons/code-solid.png"
+  },
+  {
+    "name": "comment-dots-solid.png",
+    "path": "/assets/icons/comment-dots-solid.png"
+  },
+  {
+    "name": "compass-solid.png",
+    "path": "/assets/icons/compass-solid.png"
+  },
+  {
+    "name": "credit-card-regular.png",
+    "path": "/assets/icons/credit-card-regular.png"
+  },
+  {
+    "name": "database-solid.png",
+    "path": "/assets/icons/database-solid.png"
+  },
+  {
+    "name": "dollar-sign-solid.png",
+    "path": "/assets/icons/dollar-sign-solid.png"
+  },
+  {
+    "name": "download-solid.png",
+    "path": "/assets/icons/download-solid.png"
+  },
+  {
+    "name": "drafting-compass-solid.png",
+    "path": "/assets/icons/drafting-compass-solid.png"
+  },
+  {
+    "name": "envelope-solid.png",
+    "path": "/assets/icons/envelope-solid.png"
+  },
+  {
+    "name": "euro-sign-solid.png",
+    "path": "/assets/icons/euro-sign-solid.png"
+  },
+  {
+    "name": "exclamation-circle-solid.png",
+    "path": "/assets/icons/exclamation-circle-solid.png"
+  },
+  {
+    "name": "fingerprint-solid.png",
+    "path": "/assets/icons/fingerprint-solid.png"
+  },
+  {
+    "name": "fire-alt-solid.png",
+    "path": "/assets/icons/fire-alt-solid.png"
+  },
+  {
+    "name": "flask-solid.png",
+    "path": "/assets/icons/flask-solid.png"
+  },
+  {
+    "name": "folder-solid.png",
+    "path": "/assets/icons/folder-solid.png"
+  },
+  {
+    "name": "frown-regular.png",
+    "path": "/assets/icons/frown-regular.png"
+  },
+  {
+    "name": "gift-solid.png",
+    "path": "/assets/icons/gift-solid.png"
+  },
+  {
+    "name": "grin-beam-regular.png",
+    "path": "/assets/icons/grin-beam-regular.png"
+  },
+  {
+    "name": "hammer-solid.png",
+    "path": "/assets/icons/hammer-solid.png"
+  },
+  {
+    "name": "handshake-solid.png",
+    "path": "/assets/icons/handshake-solid.png"
+  },
+  {
+    "name": "hdd-solid.png",
+    "path": "/assets/icons/hdd-solid.png"
+  },
+  {
+    "name": "headphones-solid.png",
+    "path": "/assets/icons/headphones-solid.png"
+  },
+  {
+    "name": "home-solid.png",
+    "path": "/assets/icons/home-solid.png"
+  },
+  {
+    "name": "hospital-alt-solid.png",
+    "path": "/assets/icons/hospital-alt-solid.png"
+  },
+  {
+    "name": "image-solid.png",
+    "path": "/assets/icons/image-solid.png"
+  },
+  {
+    "name": "industry-solid.png",
+    "path": "/assets/icons/industry-solid.png"
+  },
+  {
+    "name": "key-solid.png",
+    "path": "/assets/icons/key-solid.png"
+  },
+  {
+    "name": "lightbulb-solid.png",
+    "path": "/assets/icons/lightbulb-solid.png"
+  },
+  {
+    "name": "lock-solid.png",
+    "path": "/assets/icons/lock-solid.png"
+  },
+  {
+    "name": "magic-solid.png",
+    "path": "/assets/icons/magic-solid.png"
+  },
+  {
+    "name": "map-marked-alt-solid.png",
+    "path": "/assets/icons/map-marked-alt-solid.png"
+  },
+  {
+    "name": "meh-regular.png",
+    "path": "/assets/icons/meh-regular.png"
+  },
+  {
+    "name": "microphone-solid.png",
+    "path": "/assets/icons/microphone-solid.png"
+  },
+  {
+    "name": "palette-solid.png",
+    "path": "/assets/icons/palette-solid.png"
+  },
+  {
+    "name": "paper-plane-solid.png",
+    "path": "/assets/icons/paper-plane-solid.png"
+  },
+  {
+    "name": "pen-solid.png",
+    "path": "/assets/icons/pen-solid.png"
+  },
+  {
+    "name": "plane-solid.png",
+    "path": "/assets/icons/plane-solid.png"
+  },
+  {
+    "name": "play-circle-solid.png",
+    "path": "/assets/icons/play-circle-solid.png"
+  },
+  {
+    "name": "plug-solid.png",
+    "path": "/assets/icons/plug-solid.png"
+  },
+  {
+    "name": "poll-solid.png",
+    "path": "/assets/icons/poll-solid.png"
+  },
+  {
+    "name": "pound-sign-solid.png",
+    "path": "/assets/icons/pound-sign-solid.png"
+  }
+]

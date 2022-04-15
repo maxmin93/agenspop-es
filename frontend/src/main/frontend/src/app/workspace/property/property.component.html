@@ -1,0 +1,143 @@
+<div *ngIf="data" [ngClass]="togglePanel ? 'show' : 'out'" class="ws_panel propertie_panel bg-white" id="propertiePanel">
+	<div  class="inner p-3">
+		<div class="info mb-2">
+			<em class="code">{{ data.group }}</em>
+			<strong class="caption">{{ data.id }}</strong>
+		</div>
+		<div class="graphic mb-3">
+			<div class="d-flex">
+        <!-- 캔버스 모드 & 노드 에서만 팔레트 popOver 가 보여진다 -->
+        <span *ngIf="!isEdge" class="item color" [style.background-color]="currColor" [disablePopover]="!canPopover" placement="bottom"
+          [ngbPopover]="paletteContent" [popoverTitle]="paletteTitle" [autoClose]="'outside'" container="body">
+        </span>
+        <!-- edge 인 경우에만 보이는 칼라 아이템: 마우스 오버시에 노드 라벨 출력 -->
+        <span *ngIf="isEdge" class="item color" [style.background-color]="currColor1" placement="bottom"
+          [ngbPopover]="popContent1" [popoverTitle]="popTitle1" [triggers]="'mouseenter:mouseleave'" [autoClose]="'outside'" container="body">
+        </span>
+        <span *ngIf="isEdge" class="item color" [style.background-color]="currColor2" placement="bottom"
+          [ngbPopover]="popContent2" [popoverTitle]="popTitle2" [triggers]="'mouseenter:mouseleave'" [autoClose]="'outside'" container="body">
+        </span>
+        <!-- 클릭된 대상의 라벨명: 항상 보인다 -->
+        <span class="label type px-2">{{data.label}}</span>
+      </div>
+    </div>
+    <!--
+    <form class="search position-relative mb-3">
+			<fieldset>
+				<legend class="sr-only">Search Properties</legend>
+				<i class="fas fa-search position-absolute" aria-hidden="true"></i>
+				<input type="text" class="form-control py-1 pl-4" aria-describedby="search" placeholder="Search in the properties">
+			</fieldset>
+    </form>
+    -->
+    <ngb-tabset>
+      <ngb-tab title="Properties">
+        <ng-template ngbTabContent>
+          <div style="height:800px">
+          <ul class="property-list list-group">
+            <li *ngFor="let item of data.properties | keyvalue" class="list-group-item px-1 py-2 border-0">
+              <em>{{item.key}}</em>
+              <p class="property-detail">{{item.value}}</p>
+            </li>
+          </ul>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Graph features">
+        <ng-template ngbTabContent>
+          <ul class="property-list list-group">
+            <li *ngFor="let item of features" class="list-group-item px-1 py-2 border-0">
+              <em>{{item.key}}</em>
+              <p class="property-detail">{{item.value}}</p>
+            </li>
+          </ul>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+	<div class="panel_action bg-white">
+		<div class="dropright dropdown_wrap">
+			<button type="button" class="btn with_tooltip" data-placement="right" title="Expand" id="propertiePanelExpand" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-expand-arrows-alt"></i><span class="sr-only">Expand</span></button>
+			<div class="context_menu with_tit dropdown-menu" aria-labelledby="propertiePanelExpand">
+				<strong class="dropdown-header">Expend</strong>
+				<button type="button" class="dropdown-item btn d-flex justify-content-between align-items-center">All neighbors</button>
+				<div class="dropdown-divider"></div>
+				<button type="button" class="dropdown-item btn d-flex justify-content-between align-items-center">COMPANY <span class="badge badge-light">30</span></button>
+				<button type="button" class="dropdown-item btn d-flex justify-content-between align-items-center">INVESTOR <span class="badge badge-light">30</span></button>
+				<div class="dropdown-divider"></div>
+				<button type="button" class="dropdown-item btn d-flex justify-content-between align-items-center">More options</button>
+			</div>
+		</div>
+		<div class="dropright dropdown_wrap">
+			<button type="button" class="btn with_tooltip" data-placement="right" title="Run query" id="propertiePanelRunquery" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-play"></i><span class="sr-only">Run query</span></button>
+			<div class="context_menu with_tit dropdown-menu" aria-labelledby="propertiePanelRunquery">
+				<strong class="dropdown-header">Run query</strong>
+				<button type="button" class="dropdown-item btn d-flex justify-content-between align-items-center">Shortest path</button>
+			</div>
+		</div>
+		<button type="button" class="btn with_tooltip" data-placement="right" title="Remove from visualization"><i class="fas fa-ban"></i><span class="sr-only">Remove from visualization</span></button>
+		<div class="dropright dropdown_wrap">
+			<button type="button" class="btn with_tooltip" data-placement="right" title="More" id="propertiePanelMore" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i><span class="sr-only">More</span></button>
+			<div class="context_menu with_tit dropdown-menu" aria-labelledby="propertiePanelMore">
+				<strong class="dropdown-header">More</strong>
+				<button type="button" class="dropdown-item btn d-flex justify-content-between align-items-center">Pin</button>
+			</div>
+		</div>
+	</div>
+	<div class="panel_action expend bg-white">
+		<button type="button" class="btn with_tooltip px-2" data-placement="right" data-title="Open panel" id="btnPropertiePanel" (click)="hidePanel()"><i class="fas fa-chevron-left"></i><i class="fas fa-chevron-right"></i><span class="sr-only">panel</span></button>
+	</div>
+</div>
+
+<ng-template #paletteTitle>Palette</ng-template>
+<ng-template #paletteContent>
+  <!-- <div class="popover_color d-none">-->
+    <div class="popover_cont color content-aria">
+      <button *ngFor="let color of palette" type="button" class="color-btn setcolor_btn btn p-0 mx-2 my-1" [style.background-color]="color" (click)="selectColor(color)"></button>
+      <div class="form-group d-flex mt-2 mx-2 mb-0">
+        <input type="text" class="form-control" [value]="currColor">
+        <span class="check_color btn p-0" [ngStyle]="{'background-color':currColor}"></span>
+      </div>
+    </div>
+  <!-- </div> -->
+</ng-template>
+
+<!-- edge의 nodes' label popOver -->
+<ng-template #popTitle1>source label</ng-template>
+<ng-template #popContent1><b>{{source_label}}</b></ng-template>
+<ng-template #popTitle2>target label</ng-template>
+<ng-template #popContent2><b>{{target_label}}</b></ng-template>
+
+<!-- 필터 및 디자인 popover 소스코드 -->
+<ng-template #iconsTitle>Icons</ng-template>
+<ng-template #iconsContent>
+    <!-- <div class="popover_cont icon"> -->
+      <div class="form-group m-0">
+        <input type="text" class="form-control" placeholder="Search an icon">
+        <div class="loadcont d-flex flex-wrap justify-content-between">
+          <button *ngFor="let icon of icons; let i = index" type="button" class="seticon_btn btn px-2" (click)="selectIcon(icon)"
+              [style.backgroundColor]="i == 0 ? 'red' : undefined">
+            <i [ngClass]="['fas', 'fa-'+icon.name]"></i>
+          </button>
+
+          <!-- 이미지 버튼 만들기가 안됨. 찬찬히 찾아보고 다시 작업할 것 -->
+          <!--
+          <button value="crosshairs" type="button" class="seticon_btn btn px-2"><i class="fas fa-crosshairs"></i></button>
+          <button value="bullhorn" type="button" class="seticon_btn btn px-2"><i class="fas fa-bullhorn"></i></button>
+          <button value="bell" type="button" class="seticon_btn btn px-2"><i class="fas fa-bell"></i></button>
+          <button value="child" type="button" class="seticon_btn btn px-2"><i class="fas fa-child"></i></button>
+          <button value="eye" type="button" class="seticon_btn btn px-2"><i class="fas fa-eye"></i></button>
+          <button value="fire-alt" type="button" class="seticon_btn btn px-2"><i class="fas fa-fire-alt"></i></button>
+          <button value="heart" type="button" class="seticon_btn btn px-2"><i class="fas fa-heart"></i></button>
+          <button value="meh" type="button" class="seticon_btn btn px-2"><i class="fas fa-meh"></i></button>
+          <button value="smile" type="button" class="seticon_btn btn px-2"><i class="fas fa-smile"></i></button>
+          <button value="user-circle" type="button" class="seticon_btn btn px-2"><i class="fas fa-user-circle"></i></button>
+          <button value="school" type="button" class="seticon_btn btn px-2"><i class="fas fa-school"></i></button>
+          <button value="angry" type="button" class="seticon_btn btn px-2"><i class="fas fa-angry"></i></button>
+          <button value="car-alt" type="button" class="seticon_btn btn px-2"><i class="fas fa-car-alt"></i></button>
+          <button value="cart-arrow-down" type="button" class="seticon_btn btn px-2"><i class="fas fa-cart-arrow-down"></i></button>
+          -->
+        </div>
+      </div>
+    <!-- </div> -->
+</ng-template>

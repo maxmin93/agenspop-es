@@ -1,0 +1,87 @@
+<div #cy id="cy"></div>
+
+<!-- ///////////////////////////////////// -->
+<!-- //   Node ContextMenu -->
+<!-- ///////////////////////////////////// -->
+<!--
+  ** NOTE: dynamically add a sub-menu
+  https://github.com/isaacplmann/ngx-contextmenu/issues/54
+-->
+<context-menu #cyMenu [useBootstrap4]="true">
+  <ng-template contextMenuItem let-item [enabled]="false">
+    <small>[{{ item?._private.data['label'] }}]</small><br/>
+    <small>{{ item?._private.data['id'] }}</small>
+  </ng-template>
+  <ng-template contextMenuItem divider="true"></ng-template>
+  <ng-template contextMenuItem [visible]="isNode" (execute)="cyHighlight($event.item)">
+    <small>focus <strong>Neighbors</strong></small>
+  </ng-template>
+  <ng-template contextMenuItem [visible]="isGcUnit" (execute)="gcFocusOpen($event.item)">
+    <small>focus <strong>Contraction</strong></small>
+  </ng-template>
+  <!-- Before rendering, this need to detect changes -->
+  <ng-container *ngFor="let action of ctxUserActions">
+    <context-menu #subActions>
+      <ng-template *ngFor="let subAction of action.subActions" let-item contextMenuItem (execute)="subAction.click($event.event, $event.item)">
+        <small [attr.prefix]="subAction.prefix" [attr.label]="subAction.label">{{subAction.label}}({{subAction.vids.length}})</small>
+      </ng-template>
+    </context-menu>
+    <ng-template let-item contextMenuItem [subMenu]="action.subActions && subActions" (execute)="action.click($event.event, $event.item)">
+        <small>{{action.label}}({{action.size}})</small>&nbsp;<i class="far fa-plus-square"></i>
+    </ng-template>
+  </ng-container>
+</context-menu>
+
+
+<!-- ///////////////////////////////////// -->
+<!-- //   Bg ContextMenu -->
+<!-- ///////////////////////////////////// -->
+<context-menu #cyBgMenu [useBootstrap4]="true">
+  <ng-template contextMenuItem [visible]="ctxMenuActions.notExistSelect" [subMenu]="selectSubMenu">
+    <small>Select</small>
+  </ng-template>
+  <ng-template contextMenuItem [visible]="ctxMenuActions.notExistSelect" divider="true"></ng-template>
+  <context-menu #selectSubMenu>
+    <ng-template contextMenuItem (execute)="ctxMenuActions.selectWithType($event.item,'all')">
+      <small>All nodes</small>
+    </ng-template>
+    <ng-template contextMenuItem (execute)="ctxMenuActions.selectWithType($event.item,'leaf')">
+      <small>Leaf nodes</small>
+    </ng-template>
+    <ng-template contextMenuItem (execute)="ctxMenuActions.selectWithType($event.item,'orphan')">
+      <small>Orphans</small>
+    </ng-template>
+  </context-menu>
+
+  <ng-template contextMenuItem [subMenu]="selectCaptionMenu">
+    <small>Toggle captions</small>
+  </ng-template>
+  <context-menu #selectCaptionMenu>
+    <ng-template contextMenuItem (execute)="ctxMenuActions.toggleCaption($event.item,'id')">
+      <small>id</small>
+    </ng-template>
+    <ng-template contextMenuItem (execute)="ctxMenuActions.toggleCaption($event.item,'label')">
+      <small>label</small>
+    </ng-template>
+    <ng-template contextMenuItem (execute)="ctxMenuActions.toggleCaption($event.item,'name')">
+      <small>name</small>
+    </ng-template>
+    <ng-template contextMenuItem [visible]="ctxMenuActions.notExistSelect" divider="true"></ng-template>
+    <ng-template contextMenuItem (execute)="ctxMenuActions.toggleCaption($event.item,'hide')">
+      <small>HIDE</small>
+    </ng-template>
+  </context-menu>
+
+  <ng-template contextMenuItem [visible]="ctxMenuActions.existSelect" (execute)="ctxMenuActions.invertSelect($event.item)">
+    <small>Invert selection</small>
+  </ng-template>
+  <ng-template contextMenuItem [visible]="ctxMenuActions.existSelect" (execute)="ctxMenuActions.isolateSelect($event.item)">
+    <small>Isolate selection</small>
+  </ng-template>
+  <ng-template contextMenuItem [visible]="ctxMenuActions.existSelect" divider="true"></ng-template>
+  <ng-template contextMenuItem [visible]="ctxMenuActions.existSelect" (execute)="ctxMenuActions.removeSelect($event.item)">
+    <small>Remove selection</small>
+  </ng-template>
+</context-menu>
+
+ 

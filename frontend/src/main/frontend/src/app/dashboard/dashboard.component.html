@@ -1,0 +1,594 @@
+<div class="container mw-100 p-0">
+	<header class="header d-flex flex-row px-3">
+		<h1 class="logo align-self-center align-items-center">
+			<a href="">Agens <span>Browser</span></a>
+		</h1>
+		<ul class="gnb nav ml-auto justify-content-end align-items-center" role="navigation">
+			<li class="nav-item">
+				<a href="" class="nav-link">Alerts</a>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="nav-link active">Visualizations</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+					aria-expanded="false">Database #0</a>
+				<div class="dropdown-menu">
+					<a href="#" class="dropdown-item">Database #0</a>
+					<a href="#" class="dropdown-item">Database #1</a>
+				</div>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+					aria-expanded="false">Admin</a>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a href="#" class="dropdown-item">Admin 0</a>
+					<a href="#" class="dropdown-item">Admin 1</a>
+				</div>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+					aria-expanded="false">User</a>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a href="#" class="dropdown-item">User 0</a>
+					<a href="#" class="dropdown-item">User 1</a>
+				</div>
+			</li>
+		</ul>
+		<!-- <nav class="ml-auto btn-group d-flex" role="group" aria-label="Dashboard menu">
+				<a href="" class="btn align-self-center">Alerts</a>
+				<a href="" class="btn align-self-center">Visualizations</a>
+				<div class="btn-group" role="group">
+					<button id="btnDatabaseDrop" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Database #0</button>
+					<div class="dropdown-menu" aria-labelledby="btnDatabaseDrop">
+						<a href="#" class="dropdown-item">Database #0</a>
+						<a href="#" class="dropdown-item">Database #1</a>
+					</div>
+				</div>
+				<div class="btn-group" role="group">
+					<button id="btnAdminDrop" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</button>
+					<div class="dropdown-menu" aria-labelledby="btnAdminDrop">
+						<a href="#" class="dropdown-item">Admin</a>
+						<a href="#" class="dropdown-item">Admin</a>
+					</div>
+				</div>
+				<div class="btn-group" role="group">
+					<button id="btnUserDrop" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User</button>
+					<div class="dropdown-menu" aria-labelledby="btnUserDrop">
+						<a href="#" class="dropdown-item">User</a>
+						<a href="#" class="dropdown-item">User</a>
+					</div>
+				</div>
+			</nav> -->
+	</header>
+	<main>
+		<div class="db_header d-flex flex-row px-3 mb-2">
+			<nav aria-label="breadcrumb" class="d-inline-flex mr-auto align-items-center">
+				<ol class="breadcrumb mb-0 bg-transparent p-0">
+					<li class="breadcrumb-item"><a href="#">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Library</li>
+				</ol>
+			</nav>
+			<form class="db_search d-inline-flex mx-auto w-50 align-items-center">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text py-0 px-2 bg-transparent"><i class="fa fa-search"
+								aria-hidden="true"></i></div>
+					</div>
+					<input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search">
+				</div>
+			</form>
+			<div class="d-inline-flex ml-auto align-items-center">
+				<button type="button" class="btn d-inline-flex align-items-center">
+					<i class="fas fa-plus d-inline-flex mr-1" aria-hidden="true"></i>
+					<span class="custom_icon d-inline-flex">
+						<i class="b_icon fas fa-desktop" aria-hidden="true"></i>
+						<i class="fas fa-project-diagram" aria-hidden="true"></i>
+					</span>
+					<span class="sr-only">Add Visualizations</span>
+				</button>
+				<button type="button" class="btn d-inline-flex align-items-center">
+					<i class="fas fa-plus d-inline-flex mr-1" aria-hidden="true"></i>
+					<i class="b_icon far fa-folder d-inline-flex" aria-hidden="true"></i>
+					<span class="sr-only">Add Folder</span>
+				</button>
+			</div>
+		</div>
+		<div class="d-flex">
+			<div class="db_lnb flex-shrink-1 pr-3">
+				<div class="accordion">
+					<button class="btn btn-link d-flex align-items-center active" type="button" data-toggle="collapse"
+						data-target="#collapseVisualizations" aria-expanded="true"
+						aria-controls="collapseVisualizations">
+						<span class="custom_icon mr-2 align-self-center">
+							<i class="fas fa-desktop" aria-hidden="true"></i>
+							<i class="fas fa-project-diagram" aria-hidden="true"></i>
+						</span>
+						My Visualizations
+						<span class="badge d-inline-flex ml-auto align-self-center">5</span>
+					</button>
+					<div class="collapse show pl-4" id="collapseVisualizations">
+						<button class="btn btn-link d-flex align-items-center active" type="button">
+							<i class="far fa-folder d-inline-flex mr-2" aria-hidden="true"></i>
+							folder
+							<span class="badge d-inline-flex ml-auto">2</span>
+						</button>
+						<button class="btn btn-link d-flex align-items-center" type="button">
+							<i class="far fa-folder d-inline-flex mr-2" aria-hidden="true"></i>
+							folder
+							<span class="badge d-inline-flex ml-auto">3</span>
+						</button>
+					</div>
+					<button class="btn btn-link d-flex align-items-center" type="button">
+						<i class="far fa-user mr-2" aria-hidden="true"></i>
+						Shared width me
+						<span class="badge d-inline-flex ml-auto">0</span>
+					</button>
+				</div>
+			</div>
+			<div class="db_cont d-flex flex-wrap pr-3">
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="btn_add card flex-row flex-wrap justify-content-center">
+						<i class="fas fa-plus mx-auto" aria-hidden="true"></i>
+						New Visualizations
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description </p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<i class="card_icon far fa-folder d-inline-flex" aria-hidden="true"></i>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description </p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<i class="card_icon far fa-folder d-inline-flex" aria-hidden="true"></i>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description </p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<i class="card_icon far fa-folder d-inline-flex" aria-hidden="true"></i>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description </p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<i class="card_icon far fa-folder d-inline-flex" aria-hidden="true"></i>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description </p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<i class="card_icon far fa-folder d-inline-flex" aria-hidden="true"></i>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+				<div class="d-inline-flex col-12 col-sm-6 col-xl-4 p-2">
+					<button type="button" class="card text-left flex-row">
+						<div class="card-body d-flex flex-column">
+							<span class="custom_icon card_icon">
+								<i class="fas fa-desktop" aria-hidden="true"></i>
+								<i class="fas fa-project-diagram" aria-hidden="true"></i>
+							</span>
+							<div class="d-flex flex-wrap">
+								<div class="card_tit d-flex flex-row">
+									<strong class="text-truncate">Folder name name name name name name name name
+										name</strong>
+									<em>#21</em>
+								</div>
+								<p class="card_desc mt-auto text-truncate">description description description
+									description description description</p>
+							</div>
+						</div>
+					</button>
+				</div>
+			</div>
+		</div>
+	</main>
+</div>

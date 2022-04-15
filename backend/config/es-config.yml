@@ -1,0 +1,41 @@
+## config context path to "/" by setting an empty string
+server:
+  port: 38080
+  error:
+    whitelabel:
+      enabled: false            # disable default error-page
+
+spring:
+  pid:
+    file: agenspop.pid          # pid filename when start process (not working)
+  main:
+    banner-mode: "off"          # hide spring banner when start process
+  resources:
+    cache:
+      period: 3600              # seconds
+  jackson:
+    date-format: "yyyy-MM-dd HH:mm:ss"    # fixed in codes
+    time-zone: Asia/Seoul
+
+agens:
+  api:
+    base-path: /api
+    query-timeout: 600000       # 1000 ms = 1 sec
+  elasticsearch:
+    host: 192.168.0.30
+    port: 39200
+    username: elastic
+    password: bitnine
+    scroll-limit: -1            # -1(unlimit) or more than 2500
+    vertex-index: newsvertex
+    edge-index: newsedge
+    edge-validation: false      # if true, check valid edge on each request (make slow)
+    index-shards: 1             # when create index, apply to setting
+    index-replicas: 1           # when create index, apply to setting
+  product:
+    name: agenspop-es
+    version: 0.7.3
+    hello-msg: agenspop-elasticgraph v1.0 (since 2019-08-01)
+  front:
+    debug: false                # display elapsedTimes of Visualization(Workspace) about loading, rendering
+    init-mode: webgl            # initial screen-mode: webgl(default) or canvas
