@@ -35,25 +35,25 @@ ES에 대한 그래프 데이터는 logstash 라는 ETL 도구를 통해 적재�
 
 ## _`agenspop`_ main features
 
-## Rest-API
+### Rest-API
 
-### admin api
+#### admin api
 - http://<host:port>/api/admin/graphs
 - http://<host:port>/api/admin/labels/modern
 - http://<host:port>/api/admin/keys/modern/person
 
-### search api
+#### search api
 - http://<host:port>/api/search/modern/v
 - http://<host:port>/api/search/modern/e
 
-### gremlin api
+#### gremlin api
 - http://<host:port>/api/graph/gremlin?q=modern_g.V().has(%27age%27,gt(30))
 - http://<host:port>/api/graph/gremlin?q=modern_g.V().has(%27name%27,%20%27marko%27).out().out().valueMap()
 - http://<host:port>/api/graph/gremlin?q=northwind_g.V().groupCount().by(T.label)
 - http://<host:port>/api/graph/gremlin?q=northwind_g.V().hasLabel(%27product%27).properties().key().groupCount()
 - http://<host:port>/api/graph/gremlin?q=northwind_g.E().project("self","inL","outL").by(__.label()).by(__.inV().label()).by(__.outV().label()).groupCount()
 
-### cypher api
+#### cypher api
 - http://<host:port>/api/graph/cypher?ds=modern&q=match%20(a:person%20%7Bcountry:%20%27USA%27%7D)%20return%20a,%20id(a)%20limit%2010
 
 
@@ -73,5 +73,9 @@ And you can crop what you want look detail on webgl.
 Cropped graph will be loaded on canvas. 
 canvas is powerful with many functions.   
 
+## Demo (Youtube)
+
+[![Agenspop Demo 2019.12](https://i9.ytimg.com/vi/fdpXpsJP2ek/mq1.jpg?sqp=CPyMpZcG&rs=AOn4CLCMMWz7C5VkkTTj82yMwqrZEHEjqQ)](https://youtu.be/fdpXpsJP2ek)
 
 I hope enjoy agenspop.
+
